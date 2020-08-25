@@ -73,6 +73,10 @@ class Yaml2Plist:
         return output
 
 
-if __name__ == "__main__":
+def main():
     for file in sys.argv[1:]:
         print(Yaml2Plist(file).generate())
+
+
+if __name__ == "__main__":
+    main()
