@@ -48,9 +48,9 @@ class Yaml2Plist:
     def _handle_bool(self, key, value, depth=0):
         output = "  " * depth + f"<key>{key}</key>\n"
         if value:
-            output += "  " * depth + f"<true/>\n"
+            output += "  " * depth + "<true/>\n"
         else:
-            output += "  " * depth + f"<false/>\n"
+            output += "  " * depth + "<false/>\n"
         return output
 
     def _handle_int(self, key, value, depth=0):
@@ -60,10 +60,10 @@ class Yaml2Plist:
 
     def _handle_list(self, key, value, depth=0):
         output = "  " * depth + f"<key>{key}</key>\n"
-        output += "  " * depth + f"<array>\n"
+        output += "  " * depth + "<array>\n"
         for subvalue in value:
             output += self._handle_str(None, subvalue, depth + 1)
-        output += "  " * depth + f"</array>\n"
+        output += "  " * depth + "</array>\n"
 
         return output
 
