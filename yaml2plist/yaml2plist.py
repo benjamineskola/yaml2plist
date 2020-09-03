@@ -3,18 +3,20 @@ import yaml
 import sys
 import os
 
+from collections import OrderedDict
+
 
 class Yaml2Plist:
     def __init__(self, file):
         self.label = os.path.splitext(os.path.basename(file))[0]
-        self.data = yaml.safe_load(open(file))
+        loaded_data = yaml.safe_load(open(file))
+        self.data = OrderedDict({"Label": self.label})
+        self.data.update(loaded_data)
 
     def generate(self):
         output = f"""<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
-  <key>Label</key>
-  <string>{self.label}</string>
 {self._handle_dict(None, self.data, 1)}</plist>""".strip()
         return output
 
