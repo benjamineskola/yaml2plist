@@ -9,7 +9,7 @@ long_description = (here / "README.md").read_text(encoding="utf-8")
 
 setup(
     name="yaml2plist",
-    version="0.0.2",
+    version="0.1.0",
     description="Generate plist files from yaml input",
     long_description=long_description,
     long_description_content_type="text/markdown",
