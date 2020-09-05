@@ -15,7 +15,15 @@ pip install -e git+https://gitlab.com/benjamineskola/yaml2plist.git#egg=yaml2pli
 ## Usage
 
 ```bash
-yaml2plist foo.yaml > foo.plist
+usage: yaml2plist [-h] input [output]
+
+positional arguments:
+  input       path to yaml file to be processed
+  output      path to output plist file to (defaults to same as input, with
+              changed extension)
+
+optional arguments:
+  -h, --help  show this help message and exit
 ```
 
 ## License

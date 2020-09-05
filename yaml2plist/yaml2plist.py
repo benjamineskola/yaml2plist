@@ -1,9 +1,10 @@
 #!/usr/bin/env python
-import yaml
-import sys
+import argparse
 import os
-
+import sys
 from collections import OrderedDict
+
+import yaml
 
 
 class Yaml2Plist:
@@ -76,8 +77,19 @@ class Yaml2Plist:
 
 
 def main():
-    for file in sys.argv[1:]:
-        print(Yaml2Plist(file).generate())
+    parser = argparse.ArgumentParser()
+    parser.add_argument("input", help="path to yaml file to be processed")
+    parser.add_argument(
+        "output",
+        nargs="?",
+        help="path to output plist file to (defaults to same as input, with changed extension)",
+    )
+    args = parser.parse_args()
+
+    if not args.output:
+        args.output = os.path.splitext(args.input)[0] + ".plist"
+
+    print(Yaml2Plist(args.input).generate(), file=open(args.output, "w"))
 
 
 if __name__ == "__main__":
